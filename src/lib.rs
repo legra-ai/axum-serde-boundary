@@ -4,7 +4,6 @@ mod body;
 mod contract;
 mod envelope;
 mod error;
-mod media;
 mod respond;
 mod table;
 
@@ -20,7 +19,7 @@ pub use envelope::{
     ValidationDetails,
 };
 pub use error::BoundaryError;
-pub use media::{
+pub use http_content_negotiation::{
     InvalidMediaType,
     MediaType,
 };

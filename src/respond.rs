@@ -9,6 +9,7 @@ use axum::response::{
     IntoResponse,
     Response,
 };
+use http_content_negotiation::MediaType;
 use serde::Serialize;
 use serde_stream_formats::EncodeFormat;
 use tokio_stream::StreamExt;
@@ -19,7 +20,6 @@ use crate::envelope::{
     ResponseEnvelope,
 };
 use crate::error::BoundaryError;
-use crate::media::MediaType;
 use crate::table::{
     Negotiated,
     ResponseMode,

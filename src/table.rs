@@ -4,6 +4,7 @@
 use std::fmt;
 
 use http_content_negotiation::{
+    MediaType,
     ParsedAccept,
     Representation,
     RepresentationId,
@@ -11,7 +12,6 @@ use http_content_negotiation::{
 use serde_stream_formats::EncodeFormat;
 
 use crate::error::BoundaryError;
-use crate::media::MediaType;
 
 /// How the typed result is represented on the wire.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -151,7 +151,7 @@ impl ResponseTable {
             .map(|entry| {
                 Representation::new(
                     RepresentationId::new(entry.media_type.as_str()),
-                    entry.media_type.as_str(),
+                    entry.media_type,
                 )
             })
             .collect::<Vec<_>>();
@@ -187,9 +187,9 @@ impl From<&ResponseRepresentation> for Negotiated {
         Self {
             format: entry.format,
             mode: entry.mode,
-            content_type: entry.media_type.clone(),
+            content_type: entry.media_type,
             error_format: entry.error_format,
-            error_media_type: entry.error_media_type.clone(),
+            error_media_type: entry.error_media_type,
         }
     }
 }
@@ -209,7 +209,7 @@ impl Negotiated {
 
     /// The `Content-Type` of a success response in this negotiation.
     #[must_use]
-    pub fn content_type(&self) -> &MediaType {
-        &self.content_type
+    pub fn content_type(&self) -> MediaType {
+        self.content_type
     }
 }
