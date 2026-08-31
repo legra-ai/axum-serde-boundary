@@ -1,0 +1,60 @@
+[package]
+name = "axum-serde-boundary"
+version = "0.1.0"
+description = "Typed Serde HTTP boundary for axum: streaming request-body extraction, Accept-negotiated streaming responses, and a machine-readable error envelope"
+authors = ["Jacobus Geluk <jacobus.geluk@dataroad.com>"]
+edition = "2024"
+rust-version = "1.97.1"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/legra-ai/axum-serde-boundary"
+documentation = "https://docs.rs/axum-serde-boundary"
+readme = "README.md"
+build = "build.rs"
+keywords = ["axum", "serde", "content-negotiation", "streaming", "rest"]
+categories = ["web-programming::http-server", "encoding"]
+include = [
+    "Cargo.toml",
+    "README.md",
+    "LICENSE-APACHE",
+    "LICENSE-MIT",
+    "build.rs",
+    "src/**/*.rs",
+]
+
+[dependencies]
+axum = { version = "0.8", default-features = false }
+bytes = "1"
+http-body-util = "0.1"
+http-content-negotiation = "0.1"
+serde = "1"
+serde-stream-formats = "0.1"
+tokio = { version = "1", features = ["rt"] }
+tokio-stream = "0.1"
+tokio-util = { version = "0.7", features = ["io", "io-util"] }
+
+[dev-dependencies]
+axum = "0.8"
+http-body-util = "0.1"
+rmp-serde = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+tower = { version = "0.5", features = ["util"] }
+
+[build-dependencies]
+rhusky = "0.0.6"
+
+[lints.rust]
+missing_docs = "deny"
+unreachable_pub = "deny"
+
+[lints.rustdoc]
+missing_crate_level_docs = "deny"
+broken_intra_doc_links = "deny"
+
+[lints.clippy]
+all = { level = "deny", priority = -1 }
+pedantic = { level = "deny", priority = -1 }
+# See serde-stream-formats: `large_futures` ICEs current nightlies on async
+# opaque types. Stable passes the lint clean. Re-enable when rustc is fixed.
+large_futures = "allow"
