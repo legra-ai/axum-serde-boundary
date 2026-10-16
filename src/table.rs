@@ -3,7 +3,12 @@
 
 use std::fmt;
 
-use http_content_negotiation::{MediaType, ParsedAccept, Representation, RepresentationId};
+use http_content_negotiation::{
+    MediaType,
+    ParsedAccept,
+    Representation,
+    RepresentationId,
+};
 use serde_stream_formats::EncodeFormat;
 
 use crate::error::BoundaryError;

@@ -2,13 +2,22 @@
 //! `Content-Type`, decoded incrementally.
 
 use axum::RequestExt;
-use axum::extract::{FromRequest, Request};
+use axum::extract::{
+    FromRequest,
+    Request,
+};
 use axum::http::header;
 use http_body_util::LengthLimitError;
 use serde::de::DeserializeOwned;
-use serde_stream_formats::{DecodeFormat, PayloadLimitExceeded};
+use serde_stream_formats::{
+    DecodeFormat,
+    PayloadLimitExceeded,
+};
 use tokio_stream::StreamExt;
-use tokio_util::io::{StreamReader, SyncIoBridge};
+use tokio_util::io::{
+    StreamReader,
+    SyncIoBridge,
+};
 
 use crate::error::BoundaryError;
 use crate::respond::BoundaryRejection;

@@ -3,7 +3,11 @@
 
 use axum::body::to_bytes;
 use axum_serde_boundary::{
-    BoundaryError, MediaType, ResponseMode, ResponseRepresentation, ResponseTable,
+    BoundaryError,
+    MediaType,
+    ResponseMode,
+    ResponseRepresentation,
+    ResponseTable,
 };
 use serde_stream_formats::EncodeFormat;
 

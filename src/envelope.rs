@@ -4,7 +4,10 @@
 //! Envelope metadata is bounded and deliberately spare: put nothing in
 //! it that must not reach a client.
 
-use serde::{Deserialize, Serialize};
+use serde::{
+    Deserialize,
+    Serialize,
+};
 
 /// The maximum number of warnings an envelope carries; later warnings
 /// are dropped, never accumulated unboundedly.
