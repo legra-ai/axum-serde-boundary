@@ -3,29 +3,16 @@
 use axum::Router;
 use axum::body::Body;
 use axum::extract::DefaultBodyLimit;
-use axum::http::{
-    Request,
-    StatusCode,
-};
+use axum::http::{Request, StatusCode};
 use axum::routing::post;
 use http_body_util::BodyExt;
-use serde::{
-    Deserialize,
-    Serialize,
-};
+use serde::{Deserialize, Serialize};
 use serde_stream_formats::EncodeFormat;
 use tower::ServiceExt;
 
 use crate::{
-    BoundaryError,
-    ErrorBody,
-    HttpErrorContract,
-    MediaType,
-    ResponseEnvelope,
-    ResponseMode,
-    ResponseRepresentation,
-    ResponseTable,
-    SerdeBody,
+    BoundaryError, ErrorBody, HttpErrorContract, MediaType, ResponseEnvelope, ResponseMode,
+    ResponseRepresentation, ResponseTable, SerdeBody,
 };
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]

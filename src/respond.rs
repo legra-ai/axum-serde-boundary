@@ -1,29 +1,17 @@
 //! Rendering typed results and boundary failures through the
 //! negotiated representation.
 
-use axum::http::{
-    StatusCode,
-    header,
-};
-use axum::response::{
-    IntoResponse,
-    Response,
-};
+use axum::http::{StatusCode, header};
+use axum::response::{IntoResponse, Response};
 use http_content_negotiation::MediaType;
 use serde::Serialize;
 use serde_stream_formats::EncodeFormat;
 use tokio_stream::StreamExt;
 
 use crate::contract::HttpErrorContract;
-use crate::envelope::{
-    ErrorBody,
-    ResponseEnvelope,
-};
+use crate::envelope::{ErrorBody, ResponseEnvelope};
 use crate::error::BoundaryError;
-use crate::table::{
-    Negotiated,
-    ResponseMode,
-};
+use crate::table::{Negotiated, ResponseMode};
 
 impl Negotiated {
     /// Render a typed result through this negotiation: the payload in
