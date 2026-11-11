@@ -119,7 +119,7 @@ dependencies = [
  "bytes",
  "http-body-util",
  "http-content-negotiation",
- "rhusky 0.0.6",
+ "rhusky 2.0.6",
  "rmp-serde",
  "serde",
  "serde-stream-formats",
