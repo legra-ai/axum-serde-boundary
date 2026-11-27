@@ -80,6 +80,7 @@ jobs:
       # The authorized release writer: the organisation's GitHub App, minted
       # per run and scoped to this repository only.
       - uses: actions/create-github-app-token@v2
+        if: github.event_name != 'pull_request'
         id: writer
         with:
           app-id: ${{ secrets.RELEASE_WRITER_APP_ID }}
@@ -90,7 +91,7 @@ jobs:
         id: release
         with:
           breaking-change-bump: minor
-          token: ${{ steps.writer.outputs.token }}
+          token: ${{ github.event_name == 'pull_request' && github.token || steps.writer.outputs.token }}
 
   test:
     needs: prepare
